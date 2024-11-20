@@ -53,40 +53,38 @@ Landlords can also list and manage their properties efficiently.
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/your-username/sakanatkom.git```
+### Open the Solution:
+- Open the project file `Sakanatkom.sln` in Visual Studio.
 
-Open the Solution:
+### Configure the Database:
+1. Create a new database in Microsoft SQL Server.
+2. Import the database schema and seed data from the `/Database` folder.
+3. Update the connection string in the `appsettings.json` file.
 
-Open the project file Sakanatkom.sln in Visual Studio.
-Configure the Database:
+### Build the Solution:
+- In Visual Studio, go to `Build > Build Solution` or press `Ctrl + Shift + B`.
 
-Create a new database in Microsoft SQL Server.
-Import the database schema and seed data from the /Database folder.
-Update the connection string in the appsettings.json file.
-Build the Solution:
+### Run the Application:
+1. Set the project as the startup project.
+2. Press `F5` to start debugging and launch the website locally.
 
-In Visual Studio, go to Build > Build Solution or press Ctrl + Shift + B.
-Run the Application:
+---
 
-Set the project as the startup project.
-Press F5 to start debugging and launch the website locally.
-🛠️ Usage
-For Students 🧑‍🎓
-Register an Account: Create a student profile using your email.
-Search for Accommodation: Use filters or the search bar to explore housing options.
-View Property Details: Click on a listing to view details, photos, and pricing.
-Book a Property: Click "Request Room" to send a booking request.
-Communicate: Interact with the landlord via email once your request is approved.
-For Landlords 🏘️
-Register an Account: Create a landlord profile.
-List Properties: Add property details, including photos, pricing, and availability.
-Manage Bookings: Accept or reject booking requests from students.
-Update Listings: Edit or remove property details as needed.
-🤝 Contributing
-We welcome contributions to improve Sakanatkom!
+## 🛠️ Usage
 
-Steps to Contribute:
-Fork the repository.
-Create a new branch:
+### For Students 🧑‍🎓
+- **Register an Account**: Create a student profile using your email.
+- **Search for Accommodation**: Use filters or the search bar to explore housing options.
+- **View Property Details**: Click on a listing to view details, photos, and pricing.
+- **Book a Property**: Click "Request Room" to send a booking request.
+- **Communicate**: Interact with the landlord via email once your request is approved.
+
+### For Landlords 🏘️
+- **Register an Account**: Create a landlord profile.
+- **List Properties**: Add property details, including photos, pricing, and availability.
+- **Manage Bookings**: Accept or reject booking requests from students.
+- **Update Listings**: Edit or remove property details as needed.
+
 bash
 Copy code
 ```git checkout -b feature/your-feature-name```
@@ -104,7 +102,7 @@ For questions or support, reach out to us:
 Email: contact@sakanatkom.com
 GitHub: OmarSalhab
 vbnet
-Copy code
+
 
 
 
