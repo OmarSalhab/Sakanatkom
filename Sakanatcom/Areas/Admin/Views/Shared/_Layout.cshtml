@@ -1,0 +1,256 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="robots" content="noindex, nofollow">
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <link href="~/Admin/assets//img/favicon.png" rel="icon">
+    <link href="~/Admin/assets//img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="~/Admin/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Admin/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/Admin/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/Admin/assets/vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="~/Admin/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="~/Admin/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="~/Admin/assets/vendor/simple-datatables/style.css" rel="stylesheet">
+    <link href="~/Admin/assets/css/style.css" rel="stylesheet">
+    <style>
+        .dataTable-sorter {
+            display: inline-block;
+            height: 100%;
+            position: relative;
+            width: 100%;
+        }
+
+            .dataTable-sorter::before,
+            .dataTable-sorter::after {
+                content: "";
+                height: 0;
+                width: 0;
+                position: absolute;
+                right: 4px;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+            }
+
+            .dataTable-sorter::before {
+                border-top: 8px solid #fff;
+                bottom: 0px;
+            }
+
+            .dataTable-sorter::after {
+                border-bottom: 8px solid #fff;
+                border-top: 8px solid transparent;
+                top: -4px;
+            }
+
+        .index-table th,
+        .index-table td {
+            border: solid 1px white;
+        }
+
+        .btn-backtolist {
+            margin-right: 10px;
+        }
+
+        .main {
+            margin-bottom: 45px;
+        }
+
+        .font-size {
+            font-size: 16px !important;
+        }
+    </style>
+</head>
+<body>
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="#" class="logo d-flex align-items-center">
+                <img src="~/Admin/assets//img/logo.png" alt="">
+                <span class="d-none d-lg-block">AdminPanel</span>
+            </a>
+            <i class="bi bi-list toggle-sidebar-btn"></i>
+        </div>
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+                <li>
+                    <span class="nav-link nav-profile d-flex align-items-center pe-0r">@User.Identity.Name</span>
+                        <a class="nav-link nav-profile d-flex align-items-center pe-0r" asp-controller="Account" asp-action="Logout">
+                           <span>Logout/Login</span>
+                        </a>
+                    
+                   
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+    <aside id="sidebar" class="sidebar">
+        <ul class="sidebar-nav" id="sidebar-nav">
+            <li class="nav-item">
+                <a class="nav-link " asp-action="Index" asp-controller="Home">
+                    <i class="bx bx-home"></i>
+                    <span>Back To Home</span>
+                </a>
+            </li>
+ 
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#Transaction-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Transactions</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="Transaction-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                   
+                    <li>
+                        <a asp-action="Index" asp-controller="TransactionContactUs">
+                            <i class="bx bxs-contact font-size"></i><span>Contact Us</span>
+                        </a>
+                    </li>
+                   <!-- <li>
+                        <a asp-action="Index" asp-controller="TransactionBookTable">
+                            <i class="bx bx-table font-size"></i><span>Book Table</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="TransactionNewsletter">
+                            <i class="bx bx-news font-size"></i><span>News letter</span>
+                        </a>
+                     </li>-->
+                    <li>
+                        <a asp-action="Index" asp-controller="MasterPartner">
+                            <i class="bi bi-person-badge font-size"></i><span>FeedBack</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#pages-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>Website elements</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="pages-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <!--<li>
+                        <a asp-action="Index" asp-controller="MasterAbout">
+                            <i class="ri-file-info-fill font-size"></i><span>About</span>
+                        </a>
+                    </li>
+                    
+                     <li>
+                        <a asp-action="Index" asp-controller="MasterContactUsInformation">
+                            <i class="bx bxs-contact font-size"></i><span>ContactUs Information</span>
+                        </a>
+                    </li>
+                     <li>
+                        <a asp-action="Index" asp-controller="MasterMenu">
+                            <i class="bx bx-menu font-size"></i><span>Menu</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="MasterOffer">
+                            <i class="bx bxs-offer font-size"></i><span>Offer</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="MasterService">
+                            <i class="ri-service-fill font-size"></i><span>Service</span>
+                        </a>
+                    </li>
+                     <li>
+                        <a asp-action="Index" asp-controller="MasterSocialMedia">
+                            <i class="bx bx-customize font-size"></i><span>Social Media</span>
+                        </a>
+                    </li>
+                      <li>
+                        <a asp-action="Index" asp-controller="MasterWorkingHour">
+                            <i class="bi bi-clock-fill font-size"></i><span>Working Hour</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="SystemSetting">
+                            <i class="ri-settings-2-fill font-size"></i><span>System Setting</span>
+                        </a>
+                    </li>
+                    
+                    
+                    -->
+                    <li>
+                        <a asp-action="Index" asp-controller="MasterItemMenu">
+                            <i class="bx bx-home font-size"></i><span>Properties</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="MasterCategoryMenu">
+                            <i class="bx bx-category font-size"></i><span>Properties City</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="MasterSlider">
+                            <i class="bx bx-slideshow font-size"></i><span>Slider</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="User">
+                            <i class="bi-file-person-fill font-size"></i><span>Users</span>
+                        </a>
+                    </li>
+                  
+                </ul>
+            </li>
+        </ul>
+    </aside>
+    <main id="main" class="main">
+        @RenderBody()
+    </main>
+    <footer id="footer" class="footer fixed-bottom bg-white">
+        <div class="copyright">
+            &copy; Copyright <strong><span>SacanatCom</span></strong>. All Rights Reserved
+        </div>
+    </footer>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure for delete this item ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="btn-ConfirmDelete">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Admin/assets//vendor/apexcharts/apexcharts.min.js"></script>
+    <script src="~/Admin/assets//vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Admin/assets//vendor/chart.js/chart.min.js"></script>
+    <script src="~/Admin/assets//vendor/echarts/echarts.min.js"></script>
+    <script src="~/Admin/assets//vendor/quill/quill.min.js"></script>
+    <script src="~/Admin/assets//vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="~/Admin/assets//vendor/tinymce/tinymce.min.js"></script>
+    <script src="~/Admin/assets//vendor/php-email-form/validate.js"></script>
+    <script src="~/Admin/assets//js/main.js"></script>
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script>
+        var dataPath = "";
+        $(document).on("click", "#btn-delete", function () {
+            dataPath = $(this).data("path");
+        });
+        $("#btn-ConfirmDelete").click(function () {
+            window.location = dataPath;
+        });
+        var loadFile = function (event, id) {
+            $("" + id).attr("src", URL.createObjectURL(event.target.files[0]));
+        };
+    </script>
+</body>
+</html>

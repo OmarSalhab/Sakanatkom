@@ -1,0 +1,163 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutS.cshtml";
+}
+<style>
+	hr {
+		/* margin-top: 20px; */
+		margin-bottom: 20px;
+		border: 0;
+		border-top: 3px solid #eee;
+		width: 13%;
+	}
+</style>
+
+	<div style="height: 50px"></div>
+			<!-- Start of slider section -->
+				<section class="htlfndr-slider-section">
+@if (Model.MasterSliderList.Count != 0)
+	{
+
+		<div class="owl-carousel">
+			@foreach (var item in Model.MasterSliderList)
+			{
+				<div class="htlfndr-slide-wrapper">
+					@if (string.IsNullOrEmpty(item.MasterSliderImageUrl))
+					{
+						@ViewBag.ImageNotFound
+					}
+					else
+					{
+						<img src="~/images/slider/@item.MasterSliderImageUrl" class="img img-fluid" width="150" />
+					}
+					<div class="htlfndr-slide-data container">
+								
+								<!-- .htlfndr-slide-rating-stars -->
+						<h1 style="text-align:center;    margin-top: 12%;" class="htlfndr-slider-title ">
+						@item.MasterSliderTitle
+						
+						</h1>
+						<hr/>
+						<h2 style="    margin-bottom: 8%;
+    color: gainsboro;"
+						class="htlfndr-section-title">
+							@item.MasterSliderDesc
+						</h2>
+						<p class="text-center">
+							<a style="text-align:center;  margin-left: 2%; padding-top:10px; padding-bottom:10px;padding-left:20px;" class="btn-default" asp-action="Index" asp-controller="Prop">Discover Properties</a>
+						</p>
+							</div>
+
+					
+							<!-- .htlfndr-slide-data.container -->
+						</div>}
+						<!-- .htlfndr-slide-wrapper-->
+						</div>}
+						
+	</section>
+
+
+
+
+
+
+ 			<main role="main">
+				<!-- Section with popular destinations -->
+				<section class="container htlfndr-top-destinations" style="width:75%">
+					<h2 class="htlfndr-section-title">Latest Rooms</h2>
+					<div class="htlfndr-section-under-title-line"></div>
+
+					<div class="row">
+						@if (Model.LastFiveMasterItemMenu.Count != 0)
+{
+	@foreach (var item in Model.LastFiveMasterItemMenu)
+                        {
+						<div class="col-xs-12 col-sm-4 col-md-4">
+                    <article class="htlfndr-top-destination-block">
+                       
+								<div class="htlfndr-content-block">
+
+								<img style="width: 100%;
+    height: 45vh;" alt="" src="~/images/item/@item.MasterItemMenuImageUrl">
+							
+									<!-- .htlfndr-post-content -->
+								</div>
+								<!-- .htlfndr-content-block -->
+								<footer class="entry-footer">
+								<div class="htlfndr-left-side-footer">
+									<h5 class="entry-title">@item.MasterItemMenuTitle</h5>
+									<!-- .htlfndr-slide-rating-stars -->
+								</div>
+									<!-- .htlfndr-left-side-footer -->
+									<div class="htlfndr-right-side-footer">
+										<span class="htlfndr-cost">@item.MasterItemMenuPrice JOD</span>
+										<span class="htlfndr-per-night">Month</span>
+									</div>
+									<!-- .htlfndr-right-side-footer -->
+								</footer>
+							</article>
+							<!-- .htlfndr-top-destination-block -->
+						</div>
+						}}
+
+					
+					
+					</div>
+					<!-- .row -->
+				</section>
+				<!-- .container.htlfndr-top-destinations -->
+
+				
+	
+				<!-- Section with categories -->
+
+				<!-- Section with visitors cards -->
+
+				<section class="container-fluid htlfndr-visitors-cards">
+					<h2 class="htlfndr-section-title bigger-title">
+						Students FeedBack
+					</h2>
+	
+					<div class="htlfndr-section-under-title-line"></div>	
+					@if (Model.MasterPartnerList.Count != 0)
+{
+					<div class="container">
+						<div class="row">
+					@foreach (var item in Model.MasterPartnerList)
+					{
+							<div class="col-sm-4 col-xs-12 htlfndr-visitor-column">
+								<div class="htlfndr-visitor-card">
+									<!-- .visitor-avatar-side -->
+									<div class="visitor-info-side">
+									<h5 class="visitor-user-name">
+										@item.MasterPartnerName
+									</h5>
+									<h6 class="visitor-user-firm">Universty Student</h6>
+										<p class="visitor-user-text">
+										@item.MasterPartnerWebsiteUrl
+										</p>
+									</div>
+									<!-- .visitor-info-side -->
+								</div>
+								<!-- .htlfndr-visitor-card -->
+							</div>}
+							<!-- .col-sm-4.col-xs-12.htlfndr-visitor-column -->
+							</div>
+							<!-- .col-sm-4.col-xs-12.htlfndr-visitor-column -->
+						</div>
+						}
+
+						<p class="text-center">
+							<a style="text-align:center;  margin-left: 2%; padding-top:10px; padding-bottom:10px;padding-left:20px;" class="btn-default" asp-action="Create" asp-controller="FeedBack">Give Us Your FeedBack!</a>
+						</p>
+						<!-- .row -->
+				
+					<!-- .container -->
+				</section>
+				<!-- .container-fluid.htlfndr-visitors-cards -->
+
+				<!-- <button class="chat-circle"><a href="chat.html">chat</a></button> -->
+				
+			</main>
+

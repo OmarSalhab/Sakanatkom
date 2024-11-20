@@ -1,0 +1,178 @@
+﻿@model Sakanatcom.ViewModels.HomeViewModel
+@{
+    ViewData["Title"] = "Home";
+    Layout = "_Layout";
+    ViewBag.ViewName = "Index";
+}
+
+@if (Model.MasterSliderList.Count != 0)
+{
+    <div class="slider-area">
+        <div class="slider-active owl-dot-style owl-carousel">
+            @foreach (var item in Model.MasterSliderList)
+            {
+                <div class="single-slider bg-img height-100vh d-flex align-items-center justify-content-center" style="background-image:url(/images/slider/@item.MasterSliderImageUrl);">
+                    <div class="slider-content pt-100">
+                        <div class="slider-content-wrap slider-animated-1">
+                            @Html.Raw(item.MasterSliderTitle)
+                            @Html.Raw(item.MasterSliderBreif)
+                            <p>@item.MasterSliderDesc</p>
+                            <div class="slider-btn mt-20">
+                                <a class="animated" href="@item.MasterSliderUrl">read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@if (Model.MasterAbout != null)
+{
+    <div class="about-area ptb-95">
+        <div class="container">
+            <div class="row d-flex align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-content pr-30">
+                        <h2>@Model.MasterAbout.MasterAboutTitle</h2>
+                        <h3>@Model.MasterAbout.MasterAboutBrief</h3>
+                        <div class="about-peragraph">
+                            <p>@Model.MasterAbout.MasterAboutDesc</p>
+                            <div class="default-btn-style mt-35">
+                                <a href="@Model.MasterAbout.MasterAboutUrl">read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-img">
+                        <img alt="" src="~/images/about/@Model.MasterAbout.MasterAboutImageUrl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.LastFiveMasterItemMenu.Count != 0)
+{
+    <div class="popular-product gray-bg pt-100 pb-100">
+        <div class="container">
+            <div class="section-title text-center mb-50">
+                <h2>Our Popular Dishes</h2>
+                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim nostrud exercitation ullamco laboris nisi.</p>
+            </div>
+            <div class="product-slider-active owl-carousel">
+                @foreach (var item in Model.LastFiveMasterItemMenu)
+                {
+                    <div class="product-style-wrap">
+                        <img alt="" src="~/images/item/@item.MasterItemMenuImageUrl">
+                        <div class="product-content text-center">
+                            <h4>
+                                @item.MasterItemMenuTitle
+                            </h4>
+                            <p>@item.MasterItemMenuBreif</p>
+                            <span>@item.MasterItemMenuPrice JOD</span>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+        @if (Model.SystemSetting != null && !string.IsNullOrEmpty(Model.SystemSetting.SystemSettingWelcomeNoteImageUrl4))
+        {
+            <div class="popular-bg-img">
+                <img alt="" src="~/images/systemsetting/@Model.SystemSetting.SystemSettingWelcomeNoteImageUrl4">
+            </div>
+        }
+    </div>
+}
+
+@if (Model.SystemSetting != null && !string.IsNullOrEmpty(Model.SystemSetting.SystemSettingWelcomeNoteImageUrl3))
+{
+    <style>
+        .book-table {
+            background-image: url(@("/images/systemsetting/" + Model.SystemSetting.SystemSettingWelcomeNoteImageUrl3));
+        }
+    </style>
+}
+
+<div class="book-table ptb-100 bg-img" id="book">
+    <div class="container">
+        <div class="section-title text-center mb-50">
+            <h2>book a table</h2>
+            <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim nostrud exercitation ullamco laboris nisi.</p>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="reserve-form">
+                    <h3 class="reserv-title">Reservation Form</h3>
+                    <form asp-action="BookTable">
+                        <div class="reserve-form-top">
+                            <input asp-for="TransactionBookTable.TransactionBookTableFullName" placeholder="Full name">
+                            <span asp-validation-for="TransactionBookTable.TransactionBookTableFullName" class="text-danger"></span>
+                            <input asp-for="TransactionBookTable.TransactionBookTableEmail" placeholder="Email address">
+                            <span asp-validation-for="TransactionBookTable.TransactionBookTableEmail" class="text-danger"></span>
+                            <input asp-for="TransactionBookTable.TransactionBookTableMobileNumber" placeholder="Mobile number">
+                            <span asp-validation-for="TransactionBookTable.TransactionBookTableMobileNumber" class="text-danger"></span>
+                            <input class="date-time" asp-for="TransactionBookTable.TransactionBookTableDate">
+                            <span asp-validation-for="TransactionBookTable.TransactionBookTableDate" class="text-danger"></span>
+                        </div>
+                        <div class="reserve-submit mt-40">
+                            <button type="submit"> submit </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            @if (Model.SystemSetting != null)
+            {
+                @if (Model.SystemSetting.SystemSettingWelcomeNoteImageUrl2 != "")
+                {
+                    <div class="col-lg-6">
+                        <div class="book-img">
+                            <img src="~/images/systemsetting/@Model.SystemSetting.SystemSettingWelcomeNoteImageUrl2" alt="">
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+
+@if (Model.MasterOffer != null)
+{
+    <div class="offer-area gray-bg ptb-100 bg-img" style="background-image:url(/images/offer/@Model.MasterOffer.MasterOfferImageUrl);">
+        <div class="container">
+            <div class="row">
+                <div class="xl-auto col-xl-5 ms-auto col-lg-6 col-md-12">
+                    <div class="offer-content">
+                        <h5>@Model.MasterOffer.MasterOfferTitle</h5>
+                        <h2>@Model.MasterOffer.MasterOfferBreif</h2>
+                        <p>@Model.MasterOffer.MasterOfferDesc</p>
+                        <div class="default-btn-style book-btn mt-35">
+                            <a class="scroll-up" href="#book">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.MasterPartnerList.Count != 0)
+{
+    <div class="brand-logo-area ptb-100">
+        <div class="container">
+            <div class="brand-logo-active owl-carousel">
+                @foreach (var item in Model.MasterPartnerList)
+                {
+                    <div class="single-brand-logo">
+                        <a target="_blank" href="@item.MasterPartnerWebsiteUrl"><img alt="" src="~/images/partner/@item.MasterPartnerLogoImageUrl"></a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+

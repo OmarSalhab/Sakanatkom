@@ -1,0 +1,88 @@
+﻿@model Sakanatcom.ViewModels.HomeViewModel
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_LayoutS.cshtml";
+
+}
+
+
+
+<div style="    margin-top: 4%;" class="htlfndr-contact_map">
+	<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3335.83121728591!2d36.188408!3d32.100622!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x151b73b8f05b73b3%3A0xbb538a62e4116f2d!2z2YPZhNmK2Kkg2KfZhNij2YXZitixINin2YTYrdiz2YrZhiDYqNmGINi52KjYr9in2YTZhNmHINin2YTYq9in2YbZiiDZhNiq2YPYqtmI2YTZiNis2YrYpyDYp9mE2YXYudmE2YjZhdin2Ko!5e1!3m2!1sen!2sus!4v1690814999085!5m2!1sen!2sus"
+			width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+			referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+<!-- .htlfndr-contact_map -->
+<div class="container">
+	<main id="htlfndr-contact-us" class="htlfndr-main-content" role="main">
+		<div class="row htlfndr-contact-page">
+			<h1 class="text-center">Contact Us</h1>
+			<div class="htlfndr-section-under-title-line"></div>
+			<div class="row">
+				<div id="messageBox" class="alert alert-info" style="display:none;">
+    @ViewBag.Message
+</div>
+				<div class="col-md-6">
+					<form asp-action="Message">
+						<label style="    cursor: default;" for="contact-name" class="htlfndr-required htlfndr-top-label">Name</label>
+						<input class="htlfndr-review-form-input" asp-for="TransactionContactUs.TransactionContactUsFullName" placeholder="Full Name">
+						<span asp-validation-for="TransactionContactUs.TransactionContactUsFullName" class="text-danger"></span>
+						 <label style="cursor: default;" for="contact-email" class="htlfndr-required htlfndr-top-label">E-mail</label>
+        <input class="htlfndr-review-form-input" asp-for="TransactionContactUs.TransactionContactUsEmail" placeholder="Email Address"
+               value="@User.Identity.Name" >
+        <span asp-validation-for="TransactionContactUs.TransactionContactUsEmail" class="text-danger"></span>
+
+		     <label style="cursor: default;" for="subject" class="htlfndr-required htlfndr-top-label">Subject</label>
+						<input class="htlfndr-review-form-input" asp-for="TransactionContactUs.TransactionContactUsSubject" placeholder="Subject">
+						<span asp-validation-for="TransactionContactUs.TransactionContactUsSubject" class="text-danger"></span>
+
+						<label style="    cursor: default;" for="contact-message" class="htlfndr-required htlfndr-top-label">Message</label>
+						<textarea class="htlfndr-review-form-input" asp-for="TransactionContactUs.TransactionContactUsMessage" placeholder="Message"></textarea>
+						<span asp-validation-for="TransactionContactUs.TransactionContactUsMessage" class="text-danger"></span>
+					
+						<button class="btn-primary" type="submit">SEND MESSAGE</button>
+					</form>
+				</div>
+				<p class="form-messege"></p>
+
+
+				<div class="col-md-6">
+					<h3 class="htlfndr-font-24">Nice to hear You!</h3>
+					<p>
+						Your Gateway to Ideal Student Accommodation.
+					</p>
+					<h3 class="htlfndr-font-24">Contact Information</h3>
+					<div class="contact-title">Business Hours</div>
+					<p>
+						Our support service works for you from Monday to Friday from 8
+						am to 18 pm<br />
+						Wait for our reply within 24 hours<br />
+						Saturday and Sunday: closed
+					</p>
+					<div class="contact-title">Address</div>
+					<p>
+						SakanatCom<br />
+						120 ZRQ - Hashemite Uni 214, JOR
+					</p>
+					<div class="contact-title">Phone number</div>
+					<p>078-888-888-8</p>
+					<div class="contact-title">Email</div>
+					<p>support@SakanatCom.Hashemite.com</p>
+				</div>
+			</div>
+		</div>
+		<!-- .row .htlfndr-contact-page -->
+	</main>
+	<!-- .htlfndr-hotel-single-content -->
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function () {
+		var message = '@ViewBag.Message';
+		if (message) {
+			$('#messageBox').text(message);
+			$('#messageBox').show(); // Show the message box
+		}
+	});
+</script>

@@ -1,0 +1,239 @@
+﻿@model Sakanatcom.ViewModels.MasterItemMenuViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+
+}
+
+<div class="pagetitle">
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="MasterItemMenu">Item Menu</a></li>
+            <li class="breadcrumb-item active">Edit</li>
+        </ol>
+    </nav>
+</div>
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <div class="row mb-3 d-flex justify-content-center">
+                            <div class="col-sm-12 text-center">
+                                <label asp-for="UploadImage" class="col-sm-12 text-center col-form-label">
+                                    @if (string.IsNullOrEmpty(Model.MasterItemMenuImageUrl))
+                                    {
+                                        <img asp-for="UploadImage" id="MasterItemMenuImg" src="~/Admin/assets/img/not-found.svg" class="img img-fluid border border-2 border-dark rounded-3 p-5" width="300" />
+                                    }
+                                    else
+                                    {
+                                        <img asp-for="UploadImage" id="MasterItemMenuImg" src="~/images/item/@Model.MasterItemMenuImageUrl" class="img img-fluid border border-2 border-dark rounded-3 p-5" width="300" />
+                                    }
+                                </label>
+                                <input asp-for="UploadImage" hidden onchange="loadFile(event,'#MasterItemMenuImg')" class="form-control" />
+                                <input asp-for="MasterItemMenuImageUrl" hidden class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label asp-for="UploadImage" class="col-sm-12 text-center col-form-label"></label>
+                        </div>
+                         <div class="row mb-3 d-flex justify-content-center">
+                            <div class="col-sm-12 text-center">
+                                <label asp-for="UploadImage2" class="col-sm-12 text-center col-form-label">
+                                    @if (string.IsNullOrEmpty(Model.MasterItemMenuImageUrl2))
+                                    {
+                                        <img asp-for="UploadImage2" id="MasterItemMenuImg2" src="~/Admin/assets/img/not-found.svg" class="img img-fluid border border-2 border-dark rounded-3 p-5" width="300" />
+                                    }
+                                    else
+                                    {
+                                        <img asp-for="UploadImage2" id="MasterItemMenuImg2" src="~/images/item/@Model.MasterItemMenuImageUrl2" class="img img-fluid border border-2 border-dark rounded-3 p-5" width="300" />
+                                    }
+                                </label>
+                                <input asp-for="UploadImage2" hidden onchange="loadFile(event,'#MasterItemMenuImg2')" class="form-control" />
+                                <input asp-for="MasterItemMenuImageUrl2" hidden class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label asp-for="UploadImage2" class="col-sm-12 text-center col-form-label"></label>
+                        </div>
+                         <div class="row mb-3 d-flex justify-content-center">
+                            <div class="col-sm-12 text-center">
+                                <label asp-for="UploadImage3" class="col-sm-12 text-center col-form-label">
+                                    @if (string.IsNullOrEmpty(Model.MasterItemMenuImageUrl3))
+                                    {
+                                        <img asp-for="UploadImage3" id="MasterItemMenuImg3" src="~/Admin/assets/img/not-found.svg" class="img img-fluid border border-2 border-dark rounded-3 p-5" width="300" />
+                                    }
+                                    else
+                                    {
+                                        <img asp-for="UploadImage3" id="MasterItemMenuImg3" src="~/images/item/@Model.MasterItemMenuImageUrl3" class="img img-fluid border border-2 border-dark rounded-3 p-5" width="300" />
+                                    }
+                                </label>
+                                <input asp-for="UploadImage3" hidden onchange="loadFile(event,'#MasterItemMenuImg3')" class="form-control" />
+                                <input asp-for="MasterItemMenuImageUrl3" hidden class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label asp-for="UploadImage3" class="col-sm-12 text-center col-form-label"></label>
+                        </div>
+                         <div class="row mb-3 d-flex justify-content-center">
+                            <div class="col-sm-12 text-center">
+                                <label asp-for="UploadImage4" class="col-sm-12 text-center col-form-label">
+                                    @if (string.IsNullOrEmpty(Model.MasterItemMenuImageUrl4))
+                                    {
+                                        <img asp-for="UploadImage4" id="MasterItemMenuImg4" src="~/Admin/assets/img/not-found.svg" class="img img-fluid border border-2 border-dark rounded-3 p-5" width="300" />
+                                    }
+                                    else
+                                    {
+                                        <img asp-for="UploadImage4" id="MasterItemMenuImg4" src="~/images/item/@Model.MasterItemMenuImageUrl4" class="img img-fluid border border-2 border-dark rounded-3 p-5" width="300" />
+                                    }
+                                </label>
+                                <input asp-for="UploadImage4" hidden onchange="loadFile(event,'#MasterItemMenuImg4')" class="form-control" />
+                                <input asp-for="MasterItemMenuImageUrl4" hidden class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label asp-for="UploadImage4" class="col-sm-12 text-center col-form-label"></label>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterItemMenuId" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="MasterItemMenuId" readonly class="form-control" />
+                                        <span asp-validation-for="MasterItemMenuId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterCategoryMenuId" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <select asp-for="MasterCategoryMenuId" class="form-control" asp-items="@(new SelectList(ViewBag.MasterCategoryMenuList,"MasterCategoryMenuId","MasterCategoryMenuName"))"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterItemMenuTitle" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="MasterItemMenuTitle" class="form-control" />
+                                        <span asp-validation-for="MasterItemMenuTitle" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterItemMenuBreif" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <textarea asp-for="MasterItemMenuBreif" class="form-control"></textarea>
+                                        <span asp-validation-for="MasterItemMenuBreif" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterItemMenuDesc" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <textarea asp-for="MasterItemMenuDesc" class="form-control"></textarea>
+                                        <span asp-validation-for="MasterItemMenuDesc" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterItemMenuPrice" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input type="number" asp-for="MasterItemMenuPrice" class="form-control" />
+                                        <span asp-validation-for="MasterItemMenuPrice" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterItemMenuDate" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input type="date" asp-for="MasterItemMenuDate" class="form-control" />
+                                        <span asp-validation-for="MasterItemMenuDate" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterItemMenuPhone" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="MasterItemMenuPhone" class="form-control" />
+                                        <span asp-validation-for="MasterItemMenuPhone" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterItemMenuEmail" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="MasterItemMenuEmail" class="form-control" />
+                                        <span asp-validation-for="MasterItemMenuEmail" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="row mb-3">
+                                <label asp-for="MasterItemMenuName" class="col-sm-4 col-form-label"></label>
+                                <div class="col-sm-8">
+                                    <input asp-for="MasterItemMenuName" class="form-control" />
+                                    <span asp-validation-for="MasterItemMenuName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterItemMenuAddress" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="MasterItemMenuAddress" class="form-control" />
+                                        <span asp-validation-for="MasterItemMenuAddress" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterItemMenuCapicity" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input type="number" asp-for="MasterItemMenuCapicity" class="form-control" />
+                                        <span asp-validation-for="MasterItemMenuCapicity" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row mb-3">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-12 d-inline-flex justify-content-end">
+                                <a asp-action="Index" class="btn btn-success btn-backtolist">Back to List</a>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

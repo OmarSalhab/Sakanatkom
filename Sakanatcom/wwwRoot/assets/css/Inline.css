@@ -1,0 +1,241 @@
+﻿.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    max-width: 80%;
+    position: relative; 
+}
+
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.phone-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.phone-icon {
+    margin-right: 10px;
+}
+
+.email-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.email-icon {
+    margin-right: 10px;
+}
+
+.cont {
+    display: flex;
+    flex-direction: row;
+}
+
+.search-container {
+    width: 15%;
+    margin-left: 2%;
+    padding: 10px;
+    background-color: #f0f0f0;
+    margin-top: 4%;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5%;
+    margin-bottom: 7%;
+}
+
+    .search-button:hover {
+        background-color: #0056b3;
+    }
+
+.modal-content img.enlarged {
+    width: 40%;
+    max-height: 60vh;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+
+.modal-content.enlarged-image {
+    text-align: center;
+}
+
+hr {
+    margin-bottom: 20px;
+    border-top: 4px solid #000;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    z-index: 9999;
+}
+
+/* Style the modal content */
+.modal-content {
+    background-color: #fff;
+    margin: 100px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    z-index: 10000;
+}
+
+/* Style the close button */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Style the modal header */
+.modal-header {
+    margin-bottom: 20px;
+}
+
+
+h2 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.modal-subtitle {
+    font-size: 18px;
+    color: #666;
+}
+
+
+.modal-image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+    .modal-image-container img:hover {
+        transform: scale(1.1);
+    }
+
+.modal-info p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #444;
+}
+
+
+.phone-button, .email-button {
+    display: inline-block;
+    margin: 10px 20px;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    border: 2px solid #007BFF;
+    border-radius: 8px;
+    color: #fff;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+    .phone-button:hover, .email-button:hover {
+        background-color: #fff;
+        color: #007BFF;
+    }
+
+.inline {
+    margin-top: 4%;
+    margin-bottom: 4%;
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+}
+
+.sus {
+    width: 90%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+@media screen and (max-width: 600px)
+{
+    .search-container {
+        width: 43%;
+        margin-left: 28%;
+        padding: 10px;
+        background-color: #f0f0f0;
+        margin-top: 12%;
+        height: 67vh;
+    }
+    .sus {
+        width: 71%;
+        margin-left: 5%;
+    }
+
+    .inline {
+        margin-top: 4%;
+        margin-bottom: 4%;
+        display: block;
+        grid-template-columns: auto auto auto;
+        margin-top: 75vh;
+        margin-left: -25vh;
+    }
+}

@@ -1,0 +1,7 @@
+﻿.sweet-alert button {
+    background-color: #e54c2a !important;
+}
+
+.sweet-alert button:hover {
+    background-color: #242424 !important;
+}

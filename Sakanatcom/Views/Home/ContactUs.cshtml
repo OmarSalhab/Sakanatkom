@@ -1,0 +1,97 @@
+﻿@model Sakanatcom.ViewModels.HomeViewModel
+
+@{
+    ViewData["Title"] = "Contact Us";
+    ViewBag.ViewName = "ContactUs";
+}
+
+@if (Model.SystemSetting != null)
+{
+    <div class="breadcrumb-area bg-img ptb-80" style="background-image:url(@(string.IsNullOrEmpty(Model.SystemSetting.SystemSettingWelcomeNoteImageUrl)?"":"/images/systemsetting/"+Model.SystemSetting.SystemSettingWelcomeNoteImageUrl));">
+        <div class="container">
+            <div class="breadcrumb-content text-center">
+                <h3>Contact us</h3>
+                <ul>
+                    <li>
+                        <a href="@(string.IsNullOrEmpty(Model.SystemSetting.SystemSettingWelcomeNoteUrl)?"#":Model.SystemSetting.SystemSettingWelcomeNoteUrl)">Home</a>
+                    </li>
+                    <li class="active">Contact us</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="contact-area pt-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="contact-message-wrapper">
+                    <h4 class="contact-title mb-25">Leave Us a Message</h4>
+                    <div class="contact-message">
+                        <form asp-action="Message">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="contact-form-style mb-20">
+                                        <input asp-for="TransactionContactUs.TransactionContactUsFullName" placeholder="Full Name">
+                                        <span asp-validation-for="TransactionContactUs.TransactionContactUsFullName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="contact-form-style mb-20">
+                                        <input asp-for="TransactionContactUs.TransactionContactUsEmail" placeholder="Email Address">
+                                        <span asp-validation-for="TransactionContactUs.TransactionContactUsEmail" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="contact-form-style mb-20">
+                                        <input asp-for="TransactionContactUs.TransactionContactUsSubject" placeholder="Subject">
+                                        <span asp-validation-for="TransactionContactUs.TransactionContactUsSubject" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="contact-form-style">
+                                        <textarea asp-for="TransactionContactUs.TransactionContactUsMessage" placeholder="Message"></textarea>
+                                        <span asp-validation-for="TransactionContactUs.TransactionContactUsMessage" class="text-danger"></span>
+                                        <button class="submit btn-style" type="submit">SEND MESSAGE</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <p class="form-messege"></p>
+                    </div>
+                </div>
+            </div>
+            @if(Model.ContactUsList.Count != 0)
+            {
+                <div class="col-lg-4">
+                    <div class="contact-info-area">
+                        <h4 class="contact-title mb-18">Contact Us</h4>
+                        <p>Lorem ipsum dolor sit amet, conse ncteturll adipisicing elit, sed do eiusmod </p>
+                        <div class="contact-info-wrap">
+                            @foreach(var item in Model.ContactUsList)
+                            {
+                                <div class="single-contact-info mb-35">
+                                    <div class="contact-info-icon">
+                                        <i class="@item.MasterContactUsInformationIcon"></i>
+                                    </div>
+                                    <div class="contact-info-content">
+                                        @Html.Raw(item.MasterContactUsInformationDesc)
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        @if(Model.SystemSetting != null)
+        {
+            <div class="map-area pt-100">
+                <iframe src="@Model.SystemSetting.SystemSettingMapLocation" width="1180" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        }
+    </div>
+</div>
+<div class="pt-50"></div>

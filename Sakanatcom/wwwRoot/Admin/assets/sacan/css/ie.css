@@ -1,0 +1,62 @@
+html[data-useragent*='MSIE'] .htlfndr-dropdown-select > span {
+  display: run-in;
+  margin-right: 20px;
+  zoom: 1;
+}
+html[data-useragent*='MSIE'] .htlfndr-clear-datepicker {
+  top: 12px;
+}
+html[data-useragent*='MSIE'] .htlfndr-search-form-block input[type="submit"] {
+  padding-top: 4px;
+}
+html[data-useragent*='MSIE'] .htlfndr-progress {
+  *zoom: 1;
+}
+html[data-useragent*='MSIE'] .htlfndr-post-format-quote .htlfndr-entry-content blockquote:before,
+html[data-useragent*='rv:11.0'] .htlfndr-post-format-quote .htlfndr-entry-content blockquote:before {
+  line-height: 300% !important;
+}
+html[data-useragent*='rv:11.0'] .htlfndr-dropdown-select:before,
+html[data-useragent*='rv:11.0'] .active .htlfndr-dropdown-select:before {
+  position: absolute !important;
+  right: 0 !important;
+}
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  html[data-useragent*='rv:11.0'] .htlfndr-dropdown-select:before,
+  html[data-useragent*='rv:11.0'] .active .htlfndr-dropdown-select:before {
+    right:  15px !important;
+  }
+}
+@media screen and (min-width: 1200px) {
+  html[data-useragent*='rv:11.0'] .htlfndr-follow-button:before,
+  html[data-useragent*='rv:11.0'] .htlfndr-follow-button:after,
+  html[data-useragent*='MSIE'] .htlfndr-follow-button:before,
+  html[data-useragent*='MSIE'] .htlfndr-follow-button:after {
+    line-height: 300%;
+  }
+}
+@media screen and (min-width: 992px) {
+  html[data-useragent*='rv:11.0'] .htlfndr-follow-button:before,
+  html[data-useragent*='rv:11.0'] .htlfndr-follow-button:after,
+  html[data-useragent*='MSIE'] .htlfndr-follow-button:before,
+  html[data-useragent*='MSIE'] .htlfndr-follow-button:after {
+    line-height: 250%;
+  }
+}
+@media (max-width: 991px) {
+  html[data-useragent*='rv:11.0'] .htlfndr-follow-button:before,
+  html[data-useragent*='rv:11.0'] .htlfndr-follow-button:after,
+  html[data-useragent*='MSIE'] .htlfndr-follow-button:before,
+  html[data-useragent*='MSIE'] .htlfndr-follow-button:after {
+      line-height: 400%;
+  }
+}
+@media (max-width: 500px) {
+  html[data-useragent*='rv:11.0'] .htlfndr-follow-button:before,
+  html[data-useragent*='rv:11.0'] .htlfndr-follow-button:after,
+  html[data-useragent*='MSIE'] .htlfndr-follow-button:before,
+  html[data-useragent*='MSIE'] .htlfndr-follow-button:after {
+      line-height: 250%;
+  }
+}

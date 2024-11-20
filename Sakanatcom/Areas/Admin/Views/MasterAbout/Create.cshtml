@@ -1,0 +1,104 @@
+﻿@model Sakanatcom.ViewModels.MasterAboutViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="pagetitle">
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="MasterAbout">About</a></li>
+            <li class="breadcrumb-item active">Create</li>
+        </ol>
+    </nav>
+</div>
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <form asp-action="Create" enctype="multipart/form-data">
+                        <div class="row mb-3 d-flex justify-content-center">
+                            <div class="col-sm-12 text-center">
+                                <label asp-for="UploadImage" class="col-sm-12 text-center col-form-label">
+                                    <img asp-for="UploadImage" id="MasterAboutImg" src="~/Admin/assets/img/not-found.svg" class="img img-fluid border border-2 border-dark rounded-3 p-5" width="300" />
+                                </label>
+                                <input asp-for="UploadImage" hidden onchange="loadFile(event,'#MasterAboutImg')" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label asp-for="UploadImage" class="col-sm-12 text-center col-form-label"></label>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterAboutId" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="MasterAboutId" readonly class="form-control" />
+                                        <span asp-validation-for="MasterAboutId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterAboutUrl" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="MasterAboutUrl" class="form-control" />
+                                        <span asp-validation-for="MasterAboutUrl" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterAboutTitle" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <input asp-for="MasterAboutTitle" class="form-control" />
+                                        <span asp-validation-for="MasterAboutTitle" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterAboutBrief" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <textarea asp-for="MasterAboutBrief" class="form-control" maxlength="250">
+                                    </textarea>
+                                        <span asp-validation-for="MasterAboutBrief" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterAboutDesc" class="col-sm-2 col-form-label"></label>
+                                    <div class="col-sm-10">
+                                        <textarea asp-for="MasterAboutDesc" class="form-control">
+                                    </textarea>
+                                        <span asp-validation-for="MasterAboutDesc" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-12 d-inline-flex justify-content-end">
+                                <a asp-action="Index" class="btn btn-success btn-backtolist">Back to List</a>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

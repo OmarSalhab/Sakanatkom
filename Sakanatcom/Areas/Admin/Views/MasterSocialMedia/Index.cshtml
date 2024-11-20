@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Sakanatcom.ViewModels.MasterSocialMediaViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="pagetitle">
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+            <li class="breadcrumb-item">Social Media</li>
+        </ol>
+    </nav>
+</div>
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-end">
+                        <a asp-action="Create" class="btn btn-primary">Create New +</a>
+                    </h5>
+                    <table class="table datatable index-table text-break">
+                        <thead>
+                            <tr class="bg-dark text-white">
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MasterSocialMediaId)
+                                </th>
+                                <th class="w-25">
+                                    @Html.DisplayNameFor(model => model.MasterSocialMediaUrl)
+                                </th>
+                                <th class="text-center">
+                                    Operations
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-dark-light">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="align-middle">
+                                        @Html.DisplayFor(modelItem => item.MasterSocialMediaId)
+                                    </td>
+                                    <td class="align-middle w-25">
+                                        @Html.DisplayFor(modelItem => item.MasterSocialMediaUrl)
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <a asp-action="Edit" asp-route-id="@item.MasterSocialMediaId">
+                                            <i class="bx bxs-edit text-secondary h5"></i>
+                                        </a>
+                                        <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" id="btn-delete"
+                                       data-path="@Url.ActionLink("Delete","MasterSocialMedia",new {id= item.MasterSocialMediaId})">
+                                            <i class="bx bxs-trash text-danger h5"></i>
+                                        </a>
+                                        @if (item.IsActive)
+                                        {
+                                            <a asp-action="Active" asp-route-id="@item.MasterSocialMediaId">
+                                                <i class="ri-eye-fill text-success h5"></i>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-action="Active" asp-route-id="@item.MasterSocialMediaId">
+                                                <i class="ri-eye-close-fill text-danger h5"></i>
+                                            </a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

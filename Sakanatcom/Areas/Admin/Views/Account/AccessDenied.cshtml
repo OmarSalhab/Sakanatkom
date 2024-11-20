@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "AccessDenied";
+    Layout = "~/Areas/Admin/Views/Shared/_AccountLayout.cshtml";
+}
+
+<style>
+	p{
+		color:black;
+		font-family: inherit;
+		font-weight: 500;
+		line-height: 1.1;
+		font-size:112%;
+	}
+	
+</style>
+<div style="margin-top:10%">
+		        <p>You don't Have Access for this Page</p>
+	<p style="text-align:center"><a  asp-action="Index" asp-controller="Home">Back to Home</a></p>
+			
+				<p style="text-align:center">Or</p>
+
+                <p style="text-align:center">Try Another account to <a asp-action="Login">Log in</a></p>
+</div>		

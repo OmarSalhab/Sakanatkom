@@ -1,0 +1,576 @@
+﻿@using System.Security.Claims
+@model IEnumerable<Sakanatcom.ViewModels.MasterItemMenuViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutS.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./assets/css/Inline.css">
+<style>
+    .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    max-width: 80%;
+    position: relative; 
+}
+
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.phone-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.phone-icon {
+    margin-right: 10px;
+}
+
+.email-button {
+    display: inline-flex;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.email-icon {
+    margin-right: 10px;
+}
+
+.cont {
+    display: flex;
+    flex-direction: row;
+}
+
+.search-container {
+    width: 15%;
+    margin-left: 2%;
+    padding: 10px;
+    background-color: #f0f0f0;
+    margin-top: 4%;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.search-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5%;
+    margin-bottom: 7%;
+}
+
+    .search-button:hover {
+        background-color: #0056b3;
+    }
+
+.modal-content img.enlarged {
+    width: 40%;
+    max-height: 60vh;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+
+
+.modal-content.enlarged-image {
+    text-align: center;
+}
+
+hr {
+    margin-bottom: 20px;
+    border-top: 4px solid #000;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    z-index: 9999;
+}
+
+/* Style the modal content */
+.modal-content {
+    background-color: #fff;
+    margin: 100px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    z-index: 10000;
+}
+
+/* Style the close button */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Style the modal header */
+.modal-header {
+    margin-bottom: 20px;
+}
+
+
+h2 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.modal-subtitle {
+    font-size: 18px;
+    color: #666;
+}
+
+
+.modal-image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+    .modal-image-container img:hover {
+        transform: scale(1.1);
+    }
+
+.modal-info p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #444;
+}
+
+
+.phone-button, .email-button {
+    display: inline-block;
+    margin: 10px 20px;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    border: 2px solid #007BFF;
+    border-radius: 8px;
+    color: #fff;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+    .phone-button:hover, .email-button:hover {
+        background-color: #fff;
+        color: #007BFF;
+    }
+
+.inline {
+    margin-top: 4%;
+    margin-bottom: 4%;
+    display: inline-grid;
+    grid-template-columns: auto auto auto;
+}
+
+.sus {
+    width: 90%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+@@media screen and (max-width: 600px)
+{
+    .search-container {
+        width: 43%;
+        margin-left: 28%;
+        padding: 10px;
+        background-color: #f0f0f0;
+        margin-top: 12%;
+        height: 67vh;
+    }
+    .sus {
+        width: 71%;
+        margin-left: 5%;
+    }
+
+    .inline {
+        margin-top: 4%;
+        margin-bottom: 4%;
+        display: block;
+        grid-template-columns: auto auto auto;
+        margin-top: 75vh;
+        margin-left: -25vh;
+    }
+}
+</style>
+
+<main role="main">
+    <section class="cont">
+
+        <div class="search-container">
+            <p style="text-align:center">Search Here</p>
+            <hr />
+            <p>Search By Name:</p>
+            <input type="text" id="textSearchInput" class="search-input" placeholder="Property Name">
+            <p>Search By Price:</p>
+            <input type="number" id="numericSearchInput" class="search-input" placeholder="Max Price (JD/Month)">
+            <p>Search By Capacities:</p>
+            <select id="capacitySearchInput" class="search-input">
+                <option value="">All capacities</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <p>Search By City:</p>
+            <select id="citySearchInput" class="search-input">
+                <option value="">All cities</option>
+                <option value="Amman">Amman</option>
+                <option value="Zarqa">Zarqa</option>
+                <option value="Irbid">Irbid</option>
+            </select>
+            <p>Search By Date:</p>
+            <input type="date" id="dateSearchInput" class="search-input" placeholder="Select available date...">
+            <button onclick="filterProperties()" class="search-button">Search</button>
+            <button onclick="clearFilters()" class="search-button">Clear Filters</button>
+        </div>
+        <div class="inline">
+            @foreach (var item in Model)
+            {
+                <div class="modal" id="myModal-@item.MasterItemMenuId">
+                    <div class="modal-content">
+                        <span class="close-button" onclick="closeModal('@item.MasterItemMenuId')">&times;</span>
+                        <div class="modal-header">
+                            <h2>@Html.DisplayFor(modelItem => item.MasterItemMenuTitle)</h2>
+                            <p class="modal-subtitle">Property Provider: @Html.DisplayFor(modelItem => item.MasterItemMenuName)</p>
+                        </div>
+                        <div class="modal-body">
+                            <div class="modal-image-container">
+                                @if (string.IsNullOrEmpty(item.MasterItemMenuImageUrl))
+                                {
+                                  
+                                }
+                                else
+                                {
+                                    <img src="~/images/item/@item.MasterItemMenuImageUrl" class="img-fluid" width="150px"
+                                 onclick="toggleImage(this)" />
+                                }
+                                   @if (string.IsNullOrEmpty(item.MasterItemMenuImageUrl2))
+                                {
+                                  
+                                }
+                                else
+                                {
+                                    <img src="~/images/item/@item.MasterItemMenuImageUrl2" class="img-fluid" width="150px"
+                                 onclick="toggleImage(this)" />
+                                }
+                                   @if (string.IsNullOrEmpty(item.MasterItemMenuImageUrl3))
+                                {
+                                  
+                                }
+                                else
+                                {
+                                    <img src="~/images/item/@item.MasterItemMenuImageUrl3" class="img-fluid" width="150px"
+                                 onclick="toggleImage(this)" />
+                                }
+                                @if (string.IsNullOrEmpty(item.MasterItemMenuImageUrl4))
+                                {
+                                    
+                                }
+                                else
+                                {
+                                    <img src="~/images/item/@item.MasterItemMenuImageUrl4" class="img-fluid" width="150px"
+                                 onclick="toggleImage(this)" />
+                                }
+                            </div>
+                            <div class="modal-info">
+                                <div style="display: flex; justify-content: space-between;">
+
+                         
+                                    <div style="width: 40%;">
+                                        <div style="text-align: left; margin-left: 25%;">
+                                            <p><i class="fa-map-marker "></i><b> City:</b> @Html.DisplayFor(modelItem => item.MasterCategoryMenu.MasterCategoryMenuName)</p>
+                                            <p><i class="fa-location-arrow"><b> Address:</b></i> @Html.DisplayFor(modelItem => item.MasterItemMenuAddress)</p>
+                                            <p><i class="fa-calendar-o "><b> Available Date:</b></i> @Html.DisplayFor(modelItem => item.MasterItemMenuDate)</p>
+                                            <p><i class="fa-users "><b> Room Capacity:</b></i> @Html.DisplayFor(modelItem => item.MasterItemMenuCapicity)</p>
+                                            <p><i class="fa-usd "> <b> Price:</b> </i> @Html.DisplayFor(modelItem => item.MasterItemMenuPrice) JD/Month</p>
+                                        </div>
+                                    </div>
+
+                                    <div style="width: 55%; text-align:left;">
+                                        <p><b>Property Facilities:</b><br/> @Html.DisplayFor(modelItem => item.MasterItemMenuBreif)</p>
+                                        <p><b>Property Description:</b><br/> @Html.DisplayFor(modelItem => item.MasterItemMenuDesc)</p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="display:inline;">
+                            <a class="phone-button" href="tel:@Html.DisplayFor(modelItem => item.MasterItemMenuPhone)">
+                                <svg class="phone-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <path d="M21.88 16.47l-4.55-2.59a1.49 1.49 0 0 0-1.5 0l-1.75 1a14.12 14.12 0 0 1-5.9-5.9l1-1.75a1.49 1.49 0 0 0 0-1.5L7.53 2.12a1.49 1.49 0 0 0-1.5 0L1.62 6.67a3.61 3.61 0 0 0 0 5.1l10.68 10.68a3.61 3.61 0 0 0 5.1 0l4.57-4.57a3.61 3.61 0 0 0 0-5.1z" />
+                                </svg>
+                                Call us now <s style="font-size:10px;text-decoration: none;">@Html.DisplayFor(modelItem => item.MasterItemMenuPhone)</s>
+                            </a>
+
+
+                            <button class="email-button" id="sendEmailButton" style="width: 25%; font-size: 145%;" onclick="sendEmail('@item.MasterItemMenuEmail', '@item.MasterItemMenuTitle', '@item.MasterItemMenuImageUrl', '@item.MasterCategoryMenu.MasterCategoryMenuName', '@item.MasterItemMenuAddress', '@item.MasterItemMenuPrice')">
+                                <b> Rent it now! </b>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+
+                @if (item.IsActive)
+                {
+                    <div class="sus">
+                        <article class="htlfndr-top-destination-block">
+                            <div class="htlfndr-content-block item">
+                                <img style="width: 100%;
+    height: 45vh;" src="~/images/item/@item.MasterItemMenuImageUrl" />
+
+                                <div class="htlfndr-post-content">
+                                    @if (User.Identity.IsAuthenticated && User.Claims.Any(c => c.Type == ClaimTypes.Email && c.Value.Contains("@std")))
+                                    {
+                                        <div class="htlfndr-the-excerpt">
+                                            <p>@Html.DisplayFor(modelItem => item.MasterItemMenuDesc)</p>
+                                            
+
+                                            <button class="btn-default" style="  
+    padding-left: 4px;
+    padding-right: 4px;
+    text-transform: none;
+    width: 23%;
+    font-size: 64%;
+    height: 25%;
+    cursor: pointer;
+    padding-top: 1%;" onclick="openModal('@item.MasterItemMenuId')">
+                                                More Info
+                                            </button>
+
+
+                                        </div>
+                                        <div class="htlfndr-services">
+                                            <div class="row">
+                                                <div class="col-sm-6 col-xs-6 htlfndr-service" style="width:90%">
+                                                    @Html.DisplayFor(modelItem => item.MasterItemMenuBreif)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <p style="text-align: center;
+    margin-top: 40%;">Please <a href="/Account/Login">log in</a> as a student to view more details.</p>
+                                    }
+                                </div>
+                            </div>
+                    <footer class="entry-footer">
+                  
+                        <div class="htlfndr-right-side-footer">
+                                <span class="htlfndr-cost">@Html.DisplayFor(modelItem => item.MasterItemMenuPrice)</span>
+                            <span class="htlfndr-per-night"> JD/Month</span>
+                        </div> 
+
+
+
+                        <div class="htlfndr-left-side-footer">
+                                <h5 class="entry-title">@Html.DisplayFor(modelItem => item.MasterItemMenuTitle)</h5>
+                        </div>
+                            <div style="display:none;" class="htlfndr-left-side-footer">
+                                <h5 class="entry-Capicity">@Html.DisplayFor(modelItem => item.MasterItemMenuCapicity)</h5>
+                            </div>
+                            <div style="display:none;" class="htlfndr-left-side-footer">
+                                <h5 class="entry-City">@Html.DisplayFor(modelItem => item.MasterCategoryMenu.MasterCategoryMenuName)</h5>
+                            </div>
+                                 <div style="display:none;" class="htlfndr-left-side-footer">
+                                <h5 class="entry-Date">@Html.DisplayFor(modelItem => item.MasterItemMenuDate)</h5>
+                            </div>
+                    </footer>
+                </article>
+            </div>}}
+        </div>
+    </section>
+
+</main>
+
+<script>
+   
+    function openModal(itemId) {
+        var modal = document.getElementById("myModal-" + itemId);
+        modal.style.display = "flex";
+    }
+
+   
+    function closeModal(itemId) {
+        var modal = document.getElementById("myModal-" + itemId);
+        modal.style.display = "none";
+    }
+
+ 
+    window.onclick = function (event) {
+        var modals = document.querySelectorAll(".modal");
+        for (var i = 0; i < modals.length; i++) {
+            var modal = modals[i];
+            if (event.target == modal) {
+                modal.style.display = "none"; 
+            }
+        }
+    }
+</script>
+
+
+<script>
+    function filterProperties() {
+        var textFilter = document.getElementById("textSearchInput").value.toUpperCase();
+        var numberFilter = parseFloat(document.getElementById("numericSearchInput").value);
+        var capacityFilter = document.getElementById("capacitySearchInput").value;
+        var cityFilter = document.getElementById("citySearchInput").value.toUpperCase();
+        var dateFilter = document.getElementById("dateSearchInput").value;
+
+        var cards = document.querySelectorAll(".htlfndr-top-destination-block");
+
+        for (var i = 0; i < cards.length; i++) {
+            var card = cards[i];
+            var title = card.querySelector(".entry-title").textContent.toUpperCase();
+            var price = parseFloat(card.querySelector(".htlfndr-cost").textContent);
+            var capacity = parseInt(card.querySelector(".entry-Capicity").textContent);
+            var city = card.querySelector(".entry-City").textContent.toUpperCase();
+            var date = card.querySelector(".entry-Date").textContent;
+
+            var currentDate = new Date(date);
+            var selectedDate = new Date(dateFilter);
+
+            if (
+                (textFilter === "" || title.indexOf(textFilter) > -1) &&
+                (isNaN(numberFilter) || (numberFilter !== "" && price <= numberFilter)) &&
+                (capacityFilter === "" || (capacityFilter !== "" && capacity === parseInt(capacityFilter))) &&
+                (cityFilter === "" || city.indexOf(cityFilter) > -1) &&
+                (dateFilter === "" || currentDate <= selectedDate)
+            ) {
+                card.style.display = "";
+            } else {
+                card.style.display = "none";
+            }
+        }
+    }
+
+    function clearFilters() {
+        document.getElementById("textSearchInput").value = "";
+        document.getElementById("numericSearchInput").value = "";
+        document.getElementById("capacitySearchInput").value = "";
+        document.getElementById("citySearchInput").value = "";
+        document.getElementById("dateSearchInput").value = "";
+
+        var cards = document.querySelectorAll(".htlfndr-top-destination-block");
+        for (var i = 0; i < cards.length; i++) {
+            cards[i].style.display = "";
+        }
+    }
+</script>
+
+<script>
+    var currentEnlargedImg = null;
+
+    function toggleImage(img) {
+        var modalContent = img.closest(".modal-content");
+
+      
+        if (currentEnlargedImg && currentEnlargedImg !== img) {
+            currentEnlargedImg.classList.remove("enlarged");
+            currentEnlargedImg = null;
+        }
+
+     
+        if (modalContent) {
+            modalContent.classList.toggle("enlarged-image");
+            img.classList.toggle("enlarged");
+            currentEnlargedImg = img;
+        }
+    }
+</script>
+
+<script>
+    function sendEmail(recipientEmail, itemName, imageUrl, city, address, price) {
+        var subject = 'Rent Request';
+        var message = '<html><body>';
+
+        message += '<p><strong>You got Rent Request by</strong> ' + '@User.Identity.Name' +'</p>'
+        message += '<p><strong>Property Title:</strong> ' + itemName + '</p>';
+        message += '<p><strong>City:</strong> ' + city + '</p>';
+        message += '<p><strong>Address:</strong> ' + address + '</p>';
+        message += '<p><strong>Price:</strong> ' + price + ' JD/Month</p>';
+
+  
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("SendEmail")',
+            data: {
+                recipientEmail: recipientEmail,
+                subject: subject,
+                message: message
+            },
+            success: function (result) {
+                if (result.success) {
+                    alert(result.message);
+                } else {
+                    alert('Error: ' + result.message);
+                }
+            },
+            error: function () {
+                alert('An error occurred while sending the email.');
+            }
+        });
+    }
+</script>

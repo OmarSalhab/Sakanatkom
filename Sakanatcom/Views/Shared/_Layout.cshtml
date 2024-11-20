@@ -1,0 +1,226 @@
+﻿@model Sakanatcom.ViewModels.HomeViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="robots" content="noindex, follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/favicon.png">
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/icons.css">
+    <link rel="stylesheet" href="~/assets/css/plugins.css">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="~/assets/css/responsive.css">
+    <script src="~/assets/js/vendor/modernizr-3.11.7.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+    <link href="~/assets/css/sweetalert.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+</head>
+<body>
+    <header class="header-area transparent-bar header-position">
+        <div class="container">
+            <div class="row">
+                @if (Model.SystemSetting != null)
+                {
+                    <div class="col-lg-3 col-md-4 col-5 col-sm-4">
+                        <div class="logo">
+                            <a href="@Model.SystemSetting.SystemSettingWelcomeNoteUrl">
+                                <img class="logo-normal" alt="" src="~/images/systemsetting/@Model.SystemSetting.SystemSettingLogoImageUrl">
+                                <img class="logo-sticky" alt="" src="~/images/systemsetting/@Model.SystemSetting.SystemSettingLogoImageUrl2">
+                            </a>
+                        </div>
+                    </div>
+                }
+                @if (Model.MasterMenuList.Count != 0)
+                {
+                    <div class="col-lg-9 col-md-8 col-7 col-sm-8 relative">
+                        <div class="menu-search-bundle">
+                            <div class="main-menu">
+                                <nav>
+                                    <ul>
+                                        @foreach (var item in Model.MasterMenuList)
+                                        {
+                                            <li class="top-hover">
+                                                <a href="@item.MasterMenuUrl">@item.MasterMenuName</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mobile-menu-area d-md-block d-block col-md-12 col-lg-12 col-12 d-lg-none d-xl-none">
+                        <div class="mobile-menu">
+                            <nav id="mobile-menu-active">
+                                <ul class="menu-overflow">
+                                    @foreach (var item in Model.MasterMenuList)
+                                    {
+                                        <li>
+                                            <a href="@item.MasterMenuUrl">@item.MasterMenuName</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </header>
+    @RenderBody()
+    <footer class="footer-area">
+        <div class="footer-area-top black-bg pt-95 pb-60">
+            <div class="container">
+                <div class="row">
+                    @if (Model.MasterSocialMediaList.Count != 0)
+                    {
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="footer-widget mb-40">
+                                @if(Model.MasterAbout != null)
+                                {
+                                    <div class="footer-title mb-30">
+                                        <h4>About Us</h4>
+                                    </div>
+                                    <div class="footer-about">
+                                        <p>@Model.MasterAbout.MasterAboutDesc.Substring(0,Model.MasterAbout.MasterAboutDesc.IndexOf(".",Model.MasterAbout.MasterAboutDesc.IndexOf(".")+1)+1)</p>
+                                        @if (Model.MasterMenuList.Count != 0)
+                                        {
+                                            var data = Model.MasterMenuList.SingleOrDefault(data => data.MasterMenuName.Contains("Contact Us"));
+                                            if (data != null)
+                                            {
+                                                <div class="footer-map">
+                                                    <a href="@data.MasterMenuUrl"><i class="ion-ios-location-outline"></i> View on map</a>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                }
+                                <div class="social-icon">
+                                    <ul>
+                                        @foreach (var item in Model.MasterSocialMediaList)
+                                        {
+                                            <li><a class="@item.MasterSocialMediaIcon" href="@item.MasterSocialMediaUrl" target="_blank"><i class="@("ion-social-" + item.MasterSocialMediaIcon)"></i></a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (Model.ContactUsFooterList.Count != 0)
+                    {
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="footer-widget mb-40">
+                                <div class="footer-title mb-30">
+                                    <h4>contact Us</h4>
+                                </div>
+                                <div class="footer-cont-info">
+                                    @foreach (var item in Model.ContactUsFooterList)
+                                    {
+                                        <div class="single-footer-cont-info">
+                                            <div class="cont-info-icon">
+                                                <i class="@item.MasterContactUsInformationIcon"></i>
+                                            </div>
+                                            <div class="cont-info-content">
+                                                @Html.Raw(item.MasterContactUsInformationDesc)
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if (Model.MasterWorkingHourList.Count != 0)
+                    {
+                        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                            <div class="footer-widget mb-40">
+                                <div class="footer-title mb-30">
+                                    <h4>Opening Time</h4>
+                                </div>
+                                <div class="open-time pr-30">
+                                    <ul>
+                                        @foreach (var item in Model.MasterWorkingHourList)
+                                        {
+                                            <li>
+                                                @item.MasterWorkingHourName
+                                                <span>@item.MasterWorkingHourTimeFormTo</span>
+                                            </li>
+                                        }
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget mb-40">
+                            <div class="footer-title mb-30">
+                                <h4>Newsletter</h4>
+                            </div>
+                            <div class="newsletter-style">
+                                <p> Lorem ipsum dolor sit amet, consecte adipisicing elit, sed do.</p>
+                                <div class="subscribe-form ">
+                                    <form asp-action="Subscribe">
+                                        <div class="mc-form">
+                                            <div class="col-sm-12">
+                                                <input type="email" name="TransactionNewsletterEmail" class="form-control" placeholder="Enter your email" required />
+                                                <input name="ViewName" hidden class="form-control" value="@ViewBag.ViewName" required />
+@*                                                <span asp-validation-for="TransactionNewsletter.TransactionNewsletterEmail" class="text-danger"></span>
+*@                                            </div>
+                                            <div class="clear">
+                                                <input class="button" type="submit" name="subscribe" value="Subscribe">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (Model.SystemSetting != null)
+        {
+            <div class="footer-bottom black-bg-2 pb-25 pt-25">
+                <div class="container">
+                    <div class="copyright text-center">
+                        @Html.Raw(Model.SystemSetting.SystemSettingCopyright);
+                    </div>
+                </div>
+            </div>
+        }
+    </footer>
+
+    <script src="~/assets/js/vendor/jquery-v1.12.4.min.js"></script>
+    <script src="~/assets/js/popper.js"></script>
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <script src="~/assets/js/ajax-mail.js"></script>
+    <script src="~/assets/js/plugins.js"></script>
+    <script src="~/assets/js/main.js"></script>
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    @if (ViewBag.message != "Failed" && ViewBag.message != null)
+    {
+        <script>
+            swal("Success!", "@ViewBag.message!", "success");
+        </script>
+    }
+    else if (ViewBag.message != null)
+    {
+        <script>
+            swal("Error!", "Something wrong!", "error");
+        </script>
+    }
+    <script>
+        $(".sweet-alert button").click(function(){
+            window.location = '\Home\\Index';
+        })
+    </script>
+</body>
+</html>

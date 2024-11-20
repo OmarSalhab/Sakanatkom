@@ -1,0 +1,83 @@
+﻿@model Sakanatcom.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Areas/Admin/Views/Shared/_AccountLayout.cshtml";
+}
+<div style="
+    margin-top: 5%;
+">
+<button id="showLoginFormBtn1" style=" margin-left: 6%;   width: 40%;" class="btn btn-primary">Register as a Student</button>
+<button id="showLoginFormBtn2" style="    width: 45%;" class="btn btn-primary">Register as a House Provider</button>
+    <p class="small mb-0 account-message">Already have an account? <a asp-action="Login">Log in</a></p>
+</div>
+<button id="hideLoginFormBtn" class="btn btn-secondary" style="     margin-left: 25%; display: none;">Go Back to Selector</button>
+
+<div id="loginFormContainer" class="pt-4 pb-2" style="display: none;">
+<div class="pt-4 pb-2">
+    <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
+    <p class="text-center small">Enter your Email and Password to create account</p>
+    <p class="text-center small">If you are a student please register with your Student account that's contatins std </p>
+</div>
+<form asp-action="Register" class="row g-3">
+    <div class="col-12">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <label asp-for="Password" class="control-label"></label>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <label asp-for="ConfirmPassword" class="control-label"></label>
+        <input asp-for="ConfirmPassword" class="form-control" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+    <div class="col-12">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-primary w-100" type="submit">Create Account</button>
+    </div>
+    <div class="col-12">
+        <p class="small mb-0">Already have an account? <a asp-action="Login">Log in</a></p>
+    </div>
+    <div class="col-12">
+        <p class="small mb-0">To Login as a Guest: <a asp-action="Index" asp-controller="Home">Press Here</a></p>
+    </div>
+</form>
+
+        </div>
+<script>
+    var showLoginFormBtn1 = document.getElementById('showLoginFormBtn1');
+    var showLoginFormBtn2 = document.getElementById('showLoginFormBtn2');
+    var hideLoginFormBtn = document.getElementById('hideLoginFormBtn');
+    var loginFormContainer = document.getElementById('loginFormContainer');
+    var accountMessage = document.querySelector('.account-message');
+
+    showLoginFormBtn1.addEventListener('click', function () {
+        loginFormContainer.style.display = '';
+        showLoginFormBtn1.style.display = 'none';
+        showLoginFormBtn2.style.display = 'none';
+        hideLoginFormBtn.style.display = '';
+        accountMessage.style.display = 'none';
+    });
+
+    showLoginFormBtn2.addEventListener('click', function () {
+        loginFormContainer.style.display = '';
+        showLoginFormBtn1.style.display = 'none';
+        showLoginFormBtn2.style.display = 'none';
+        hideLoginFormBtn.style.display = '';
+        accountMessage.style.display = 'none';
+    });
+
+    hideLoginFormBtn.addEventListener('click', function () {
+        loginFormContainer.style.display = 'none';
+        showLoginFormBtn1.style.display = '';
+        showLoginFormBtn2.style.display = '';
+        hideLoginFormBtn.style.display = 'none';
+        accountMessage.style.display = '';
+    });
+</script>

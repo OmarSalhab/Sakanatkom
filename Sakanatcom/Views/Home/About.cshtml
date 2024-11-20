@@ -1,0 +1,70 @@
+﻿@model Sakanatcom.ViewModels.HomeViewModel
+
+@{
+    ViewData["Title"] = "About";
+    ViewBag.ViewName = "About";
+}
+
+@if (Model.SystemSetting != null)
+{
+    <div class="breadcrumb-area bg-img ptb-80" style="background-image:url(@(string.IsNullOrEmpty(Model.SystemSetting.SystemSettingWelcomeNoteImageUrl)?"":"/images/systemsetting/"+Model.SystemSetting.SystemSettingWelcomeNoteImageUrl));">
+        <div class="container">
+            <div class="breadcrumb-content text-center">
+                <h3>about us</h3>
+                <ul>
+                    <li>
+                        <a href="@(string.IsNullOrEmpty(Model.SystemSetting.SystemSettingWelcomeNoteUrl)?"#":Model.SystemSetting.SystemSettingWelcomeNoteUrl)">Home</a>
+                    </li>
+                    <li class="active">about us</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+@if (Model.MasterAbout != null)
+{
+    <div class="about-area ptb-95">
+        <div class="container">
+            <div class="row d-flex align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-content pr-30">
+                        <h2>@Model.MasterAbout.MasterAboutTitle</h2>
+                        <h3>@Model.MasterAbout.MasterAboutBrief</h3>
+                        <div class="about-peragraph">
+                            <p>@Model.MasterAbout.MasterAboutDesc</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-img">
+                        <img alt="" src="~/images/about/@Model.MasterAbout.MasterAboutImageUrl">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.MasterServiceList.Count != 0)
+{
+    <div class="services-area pt-100 pb-70 gray-bg">
+        <div class="container">
+            <div class="section-title text-center mb-50">
+                <h2>Our Services</h2>
+                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim nostrud exercitation ullamco laboris nisi.</p>
+            </div>
+            <div class="row">
+                @foreach(var item in Model.MasterServiceList)
+                {
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                        <div class="single-service text-center mb-30">
+                            <i class="@item.MasterServiceIcon"></i>
+                            <h3>@item.MasterServiceTitle</h3>
+                            <p>@item.MasterServiceDesc</p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}

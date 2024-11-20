@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Sakanatcom.ViewModels.TransactionNewsletterViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="pagetitle">
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+            <li class="breadcrumb-item">News letter</li>
+        </ol>
+    </nav>
+</div>
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-end">
+                    </h5>
+                    <table class="table datatable index-table text-break">
+                        <thead>
+                            <tr class="bg-dark text-white">
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TransactionNewsletterId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TransactionNewsletterEmail)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-dark-light">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="align-middle">
+                                        @Html.DisplayFor(modelItem => item.TransactionNewsletterId)
+                                    </td>
+                                    <td class="align-middle">
+                                        @Html.DisplayFor(modelItem => item.TransactionNewsletterEmail)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

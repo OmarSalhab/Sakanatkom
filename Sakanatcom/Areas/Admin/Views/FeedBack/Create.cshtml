@@ -1,0 +1,46 @@
+﻿@model Sakanatcom.ViewModels.MasterPartnerViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    	Layout = "~/Areas/Admin/Views/Shared/_LayoutS.cshtml";
+}
+
+
+
+
+        <div class="container">
+	<main id="htlfndr-contact-us" class="htlfndr-main-content" role="main">
+		<div class="row htlfndr-contact-page">
+			<h1 class="text-center">Give Us Your FeedBack On Our Services!</h1>
+			<div class="htlfndr-section-under-title-line"></div>
+			<div class="row">
+	
+				<div class="col-md-6">
+					<form asp-action="Create" enctype="multipart/form-data">
+						<label style="    cursor: default;" for="contact-name" class="htlfndr-required htlfndr-top-label">Name:</label>
+						<input class="htlfndr-review-form-input" asp-for="MasterPartnerName" placeholder="Full Name" />
+						<span asp-validation-for="MasterPartnerName" class="text-danger"></span>
+						<label style="    cursor: default;" for="contact-email" class="htlfndr-required htlfndr-top-label">Your FeedBack:</label>
+						<input class="htlfndr-review-form-input" asp-for="MasterPartnerWebsiteUrl" placeholder="Discription"/>
+						<span asp-validation-for="MasterPartnerWebsiteUrl" class="text-danger"></span>
+
+						<button type="submit" class="btn btn-primary">Send</button>
+					</form>
+				</div>
+				<p class="form-messege"></p>
+
+
+				<div class="col-md-6">
+					<h3 class="htlfndr-font-24">Thanks For Rating Us!</h3>
+					<p>
+						We Will Be Happy Hearing Your FeedBack.
+					</p>
+					<p>
+						Your FeedBack may be published.
+					</p>
+					</div>
+			</div>
+		</div>
+	</main>
+
+</div>

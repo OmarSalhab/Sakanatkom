@@ -1,0 +1,175 @@
+﻿@model IEnumerable<Sakanatcom.ViewModels.MasterItemMenuViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutP.cshtml";
+}
+<style>
+    @@media screen and (max-width: 600px){
+        .hide{
+            display:none;
+        }
+    }
+</style>
+
+
+<br />
+<br />
+<br />
+<br />
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-end">
+                        <a asp-action="Create" class="btn btn-primary">Add New Properity +</a>
+                    </h5>
+                    <table class="table datatable index-table text-break">
+                        <thead>
+                            <tr class="bg-dark text-white">
+                              
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MasterItemMenuImageUrl)
+                                </th>
+                             
+                                <th class="hide">
+                                    @Html.DisplayNameFor(model => model.MasterItemMenuImageUrl2)
+                                </th>
+                                 <th class="hide">
+                                    @Html.DisplayNameFor(model => model.MasterItemMenuImageUrl3)
+                                </th>
+                                <th class ="hide">
+                                    @Html.DisplayNameFor(model => model.MasterItemMenuImageUrl4)
+                                </th>
+                                <th class="w-25">
+                                    @Html.DisplayNameFor(model => model.MasterItemMenuTitle)
+                                </th>
+                                <th class="hide">
+                                    @Html.DisplayNameFor(model => model.MasterCategoryMenu.MasterCategoryMenuName)
+                                </th>
+                                <th class="hide">
+                                    @Html.DisplayNameFor(model => model.MasterItemMenuPrice)
+                                </th>
+                                <th class="hide">
+                                    @Html.DisplayNameFor(model => model.MasterItemMenuPhone)
+                                </th>
+                                <th class="hide">
+                                    @Html.DisplayNameFor(model => model.MasterItemMenuEmail)
+                                </th>
+                                <th class="hide">
+                                    @Html.DisplayNameFor(model => model.MasterItemMenuName)
+                                </th>
+                                 <th class="hide">
+                                    @Html.DisplayNameFor(model => model.MasterItemMenuAddress)
+                                </th>
+                                <th class="hide">
+                                    @Html.DisplayNameFor(model => model.MasterItemMenuCapicity)
+                                </th>
+                                <th class="text-center">
+                                    Operations
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-dark-light">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                   
+                                    <td class="align-middle text-center">
+                                        @if (string.IsNullOrEmpty(item.MasterItemMenuImageUrl))
+                                        {
+                                            @ViewBag.ImageNotFound
+                                        }
+                                        else
+                                        {
+                                            <img src="~/images/item/@item.MasterItemMenuImageUrl" class="img img-fluid" width="150" />
+                                        }
+                                    </td>
+
+                                     <td class="align-middle text-center hide">
+                                        @if (string.IsNullOrEmpty(item.MasterItemMenuImageUrl2))
+                                        {
+                                            @ViewBag.ImageNotFound
+                                        }
+                                        else
+                                        {
+                                            <img src="~/images/item/@item.MasterItemMenuImageUrl2" class="img img-fluid" width="150" />
+                                        }
+                                    </td>
+
+                                     <td class="align-middle text-center hide">
+                                        @if (string.IsNullOrEmpty(item.MasterItemMenuImageUrl3))
+                                        {
+                                            @ViewBag.ImageNotFound
+                                        }
+                                        else
+                                        {
+                                            <img src="~/images/item/@item.MasterItemMenuImageUrl3" class="img img-fluid" width="150" />
+                                        }
+                                    </td>
+
+                                    <td class="align-middle text-center hide">
+                                        @if (string.IsNullOrEmpty(item.MasterItemMenuImageUrl4))
+                                        {
+                                            @ViewBag.ImageNotFound
+                                        }
+                                        else
+                                        {
+                                            <img src="~/images/item/@item.MasterItemMenuImageUrl4" class="img img-fluid" width="150" />
+                                        }
+                                    </td>
+                                    <td class="align-middle w-25">
+                                        @Html.DisplayFor(modelItem => item.MasterItemMenuTitle)
+                                    </td>
+                                    <td class="align-middle hide">
+                                        @Html.DisplayFor(modelItem => item.MasterCategoryMenu.MasterCategoryMenuName)
+                                    </td>
+                                    <td class="align-middle hide">
+                                        @Html.DisplayFor(modelItem => item.MasterItemMenuPrice)
+                                    </td>
+                                    <td class="align-middle hide">
+                                        @Html.DisplayFor(modelItem => item.MasterItemMenuPhone)
+                                    </td>
+                                    <td class="align-middle hide">
+                                        @Html.DisplayFor(modelItem => item.MasterItemMenuEmail)
+                                    </td>
+                                    <td class="align-middle hide">
+                                        @Html.DisplayFor(modelItem => item.MasterItemMenuName)
+                                    </td>
+                                    <td class="align-middle hide">
+                                        @Html.DisplayFor(modelItem => item.MasterItemMenuAddress)
+                                    </td>
+                                    <td class="align-middle hide">
+                                        @Html.DisplayFor(modelItem => item.MasterItemMenuCapicity)
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <a asp-action="Edit" asp-route-id="@item.MasterItemMenuId">
+                                            <i class="bx bxs-edit text-secondary h5"></i>
+                                        </a>
+                                        <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal" id="btn-delete"
+                                       data-path="@Url.ActionLink("Delete","List",new {id= item.MasterItemMenuId})">
+                                            <i class="bx bxs-trash text-danger h5"></i>
+                                        </a>
+                                        @if (item.IsActive)
+                                        {
+                                           
+                                                <i class="ri-eye-fill text-success h5"></i>
+                                            
+                                        }
+                                        else
+                                        {
+                                           
+                                                <i class="ri-eye-close-fill text-danger h5"></i>
+                                            
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

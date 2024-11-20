@@ -1,0 +1,79 @@
+﻿@model Sakanatcom.ViewModels.MasterContactUsInformationViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="pagetitle">
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Home">Home</a></li>
+            <li class="breadcrumb-item"><a asp-action="Index" asp-controller="MasterContactUsInformation">ContactUs Information</a></li>
+            <li class="breadcrumb-item active">Edit</li>
+        </ol>
+    </nav>
+</div>
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterContactUsInformationId" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="MasterContactUsInformationId" value="0" readonly class="form-control" />
+                                        <span asp-validation-for="MasterContactUsInformationId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterContactUsInformationRedirect" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="MasterContactUsInformationRedirect" class="form-control" />
+                                        <span asp-validation-for="MasterContactUsInformationRedirect" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterContactUsInformationIcon" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <input asp-for="MasterContactUsInformationIcon" class="form-control" />
+                                        <span asp-validation-for="MasterContactUsInformationIcon" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row mb-3">
+                                    <label asp-for="MasterContactUsInformationDesc" class="col-sm-4 col-form-label"></label>
+                                    <div class="col-sm-8">
+                                        <textarea asp-for="MasterContactUsInformationDesc" class="form-control">
+                                 </textarea>
+                                        <span asp-validation-for="MasterContactUsInformationDesc" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-12 d-inline-flex justify-content-end">
+                                <a asp-action="Index" class="btn btn-success btn-backtolist">Back to List</a>
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
